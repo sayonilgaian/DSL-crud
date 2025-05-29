@@ -6,7 +6,7 @@ const getDomainFilePath = require('../../utils/DSL/getDomainFilePath');
 const addDSLClass = require('../../utils/DSL/addDSLClass');
 
 // Create router
-const dslRouter = Router();
+const dslCreateRouter = Router();
 
 const BASE_DSL_PATH = path.join(__dirname, '../../files/base.dsl.xml');
 const DOMAINS_DIR = path.join(__dirname, '../../files/domains');
@@ -21,7 +21,7 @@ if (!fs.existsSync(DOMAINS_DIR)) {
 }
 
 // API to initialize domain DSL file
-dslRouter.post('/api/domain/init', (req, res) => {
+dslCreateRouter.post('/api/domain/init', (req, res) => {
 	const { domain } = req.body;
 	if (!domain) return res.status(400).json({ error: 'Domain is required.' });
 
@@ -41,7 +41,7 @@ dslRouter.post('/api/domain/init', (req, res) => {
 });
 
 // API to add a new class (entity, actor, resource, etc.)
-dslRouter.post('/api/domain/:domain/add-class', (req, res) => {
+dslCreateRouter.post('/api/domain/:domain/add-class', (req, res) => {
 	const domain = req.params.domain.toLowerCase();
 	const { classType, className, attributes } = req.body;
 
@@ -68,4 +68,4 @@ dslRouter.post('/api/domain/:domain/add-class', (req, res) => {
 	);
 });
 
-module.exports = dslRouter;
+module.exports = dslCreateRouter;
