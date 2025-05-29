@@ -1,0 +1,80 @@
+initalize a doman dsl
+
+curl --location 'http://localhost:8080/api/domain/init' \
+--header 'Content-Type: application/json' \
+--data '{
+    "domain": "Healthcare"
+}'
+
+add class
+
+curl --location 'http://localhost:8080/api/domain/healthcare/add-class' \
+--header 'Content-Type: application/json' \
+--data '{
+    "classType": "entity",
+    "className": "nurse",
+    "attributes": [
+        {
+            "name": "specialization",
+            "type": "string"
+        },
+        {
+            "name": "highestDegree",
+            "type": "string"
+        },
+        {
+            "name": "yearsOfExperience",
+            "type": "integer"
+        }
+    ]
+}'
+
+delete class
+
+curl --location --request DELETE 'http://localhost:8080/api/domain/healthcare/class/nurse' \
+--header 'Content-Type: application/json'
+
+delete attribute in class
+
+curl --location --request DELETE 'http://localhost:8080/api/domain/healthcare/delete-attribute' \
+--header 'Content-Type: application/json' \
+--data '{
+    "className": "doctor",
+    "attributeName": "highestDegree"
+}'
+
+rename class
+
+curl --location --request PUT 'http://localhost:8080/api/domain/healthcare/update-class-name' \
+--header 'Content-Type: application/json' \
+--data '{
+    "oldClassName": "doctor",
+    "newClassName": "physician"
+  }'
+
+
+add attribute to class
+  
+
+curl --location 'http://localhost:8080/api/domain/healthcare/add-attribute' \
+--header 'Content-Type: application/json' \
+--data '{
+    "className": "physician",
+    "attribute": {
+      "name": "licenseNumber",
+      "type": "string"
+    }
+  }'
+
+rename attribute in class
+
+curl --location --request PUT 'http://localhost:8080/api/domain/healthcare/update-attribute' \
+--header 'Content-Type: application/json' \
+--data '{
+    "className": "physician",
+    "attributeName": "specialization",
+    "newAttribute": {
+      "name": "field",
+      "type": "string"
+    }
+  }'
