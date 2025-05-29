@@ -24,7 +24,6 @@ if (!fs.existsSync(DOMAINS_DIR)) {
 
 dslDeleteRouter.delete('/api/domain/:domain/class/:className', (req, res) => {
 	const domain = req.params.domain.toLowerCase();
-	console.log(domain);
 	const className = req.params.className.toLowerCase();
 	const domainFilePath = getDomainFilePath(domain, DOMAINS_DIR);
 
@@ -36,11 +35,10 @@ dslDeleteRouter.delete('/api/domain/:domain/class/:className', (req, res) => {
 });
 
 dslDeleteRouter.delete(
-	'/api/domain/:domain/class/:className/attribute/:attributeName',
+	'/api/domain/:domain/delete-attribute',
 	(req, res) => {
 		const domain = req.params.domain.toLowerCase();
-		const className = req.params.className.toLowerCase();
-		const attributeName = req.params.attributeName.toLowerCase();
+		const { className, attributeName } = req.body;
 		const domainFilePath = getDomainFilePath(domain, DOMAINS_DIR);
 
 		if (!fs.existsSync(domainFilePath)) {
