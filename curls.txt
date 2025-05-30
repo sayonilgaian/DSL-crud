@@ -88,3 +88,7 @@ curl --location 'http://localhost:8080/api/domain/healthcare/add-reference' \
     "toClass": "physician",
     "referenceName": "assignee"
 }'
+
+convert existing xml to yaml
+
+curl --location 'http://localhost:8080/api/domain/healthcare/convert-to-yaml'
