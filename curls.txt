@@ -78,3 +78,13 @@ curl --location --request PUT 'http://localhost:8080/api/domain/healthcare/updat
       "type": "string"
     }
   }'
+
+create 1 way reference
+
+curl --location 'http://localhost:8080/api/domain/healthcare/add-reference' \
+--header 'Content-Type: application/json' \
+--data '{
+    "fromClass": "nurse",
+    "toClass": "physician",
+    "referenceName": "assignee"
+}'

@@ -1,13 +1,9 @@
 const express = require('express');
-const dslCreateRouter = require('./routers/DSL/create');
-const dslDeleteRouter = require('./routers/DSL/delete');
-const dslUpdateRouter = require('./routers/DSL/update');
+const dslRouter = require('./routers/DSL/dslRouter');
 
 const app = express();
 app.use(express.json());
-app.use(dslCreateRouter);
-app.use(dslDeleteRouter);
-app.use(dslUpdateRouter);
+app.use(dslRouter);
 
 // Start the server
 const PORT = 8080;
